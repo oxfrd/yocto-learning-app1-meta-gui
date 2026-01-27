@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LED Control</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: Arial; text-align: center; margin-top: 50px; background: #222; color: #fff; }
+        button { font-size: 24px; padding: 20px 40px; margin: 10px; border: none; border-radius: 10px; cursor: pointer; }
+        .on { background: #4CAF50; color: white; }
+        .off { background: #f44336; color: white; }
+        .blink { background: #FF9800; color: white; }
+        #status { font-size: 28px; margin: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Raspberry Pi LED Control</h1>
+    <div id="status">Click button!</div>
+    
+    <button class="on" onclick="toggleLED('on')">LED ON</button>
+    <button class="off" onclick="toggleLED('off')">LED OFF</button>
+    <button class="blink" onclick="toggleLED('blink')">BLINK</button>
+    
+    <script>
+        function toggleLED(action) {
+            console.log("CALLING: /cgi-bin/led-toggle.sh?" + action);
+        
+            fetch('/cgi-bin/led-toggle.sh?' + action)
+                .then(response => response.text())
+                .then(data => {
+                    console.log("RESPONSE:", data);
+                    document.getElementById('status').innerText = data; 
+                })
+                .catch(error => {
+                    console.log("ERROR:", error);
+                    document.getElementById('status').innerText = 'error: ' + error;
+                });
+            }
+
+    </script>
+</body>
+</html>

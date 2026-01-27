@@ -1,0 +1,2 @@
+# Allow daemon group to access GPIO devices
+SUBSYSTEM=="gpio", KERNEL=="gpiochip*", MODE="0660", GROUP="daemon"
