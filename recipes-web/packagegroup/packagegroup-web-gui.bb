@@ -12,5 +12,5 @@ RDEPENDS:${PN}:append = " \
     libgpiod-tools \
     cog \
     wpewebkit \
-    apache2 \    
+    apache2 \
 "

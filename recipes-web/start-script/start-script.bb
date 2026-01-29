@@ -10,8 +10,7 @@ S = "${WORKDIR}"
 
 do_install() {
     install -d ${D}${bindir}
-
-    install -m 0755 ${S}/start-script ${D}${bindir}/start-script
+    install -m 0755 ${S}/start-script ${D}${bindir}/
 }
 
 FILES:${PN} += "${bindir}/start-script"
